@@ -1,6 +1,11 @@
 #include "couchbasedatacource.h"
 
-CouchBaseDataCource::CouchBaseDataCource()
+CouchBaseDataSource::CouchBaseDataSource()
+{
+
+}
+
+bool CouchBaseDataSource::Create(QString instance, QString userName, QString password, QString dataBucket)
 {
 
 }
