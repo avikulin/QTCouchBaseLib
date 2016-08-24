@@ -31,7 +31,7 @@ CouchBaseDocument::CouchBaseDocument(lcb_error_t error, const lcb_get_resp_t *re
 CouchBaseDocument::CouchBaseDocument(QString key, QString data, ContentType type, QObject *parent)
     :QObject(parent), _key{key}, _data{data}, _type{type}
 {
-    
+
 }
 
 bool CouchBaseDocument::isValid()
