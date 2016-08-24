@@ -13,12 +13,14 @@ DEFINES += COUCHBASEADAPTER_LIBRARY
 
 SOURCES += couchbaseadapter.cpp \
     couchbasedatacource.cpp \
-    couchbasedocument.cpp
+    couchbasedocument.cpp \
+    couchbaseclientcookie.cpp
 
 HEADERS += couchbaseadapter.h\
         couchbaseadapter_global.h \
     couchbasedatacource.h \
-    couchbasedocument.h
+    couchbasedocument.h \
+    couchbaseclientcookie.h
 
 unix {
     target.path = /usr/lib
