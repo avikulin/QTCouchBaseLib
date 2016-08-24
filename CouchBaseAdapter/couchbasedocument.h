@@ -23,6 +23,15 @@ public:
     CouchBaseDocument(lcb_error_t error, const lcb_get_resp_t *resp, QObject *parent = 0);
     CouchBaseDocument(QString key, QString data, ContentType type, QObject *parent = 0);
 
+    CouchBaseDocument(CouchBaseDocument& other);
+    CouchBaseDocument(CouchBaseDocument&& other);
+    CouchBaseDocument& operator =(CouchBaseDocument& other);
+    CouchBaseDocument& operator =(CouchBaseDocument&& other);
+
+    bool operator ==(CouchBaseDocument& firstOperand, CouchBaseDocument& secondOperand);
+    bool operator !=(CouchBaseDocument& firstOperand, CouchBaseDocument& secondOperand);
+
+
     QString GetKey ();
     lcb_error_t GetErrorCode();
     QString GetErrorDescription();
@@ -36,11 +45,12 @@ private:
 
     QByteArray _key;
     QByteArray _data;
-
-    ContentType _type = ContentType::Undefined;
     lcb_cas_t _cas;
     lcb_error_t _error;
+    ContentType _type = ContentType::Undefined;
     bool _validationStatus = false;
 };
+
+typedef QHash<QString,CouchBaseDocument> CouchBaseRecordSet;
 
 #endif // COUCHBASEDOCUMENT_H
