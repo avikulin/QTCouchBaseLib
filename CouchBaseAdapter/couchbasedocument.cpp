@@ -39,7 +39,11 @@ bool CouchBaseDocument::isValid()
     return _validationStatus;
 }
 
-QString CouchBaseDocument::GetErrorInfo()
+CouchBaseOperationResult CouchBaseDocument::GetErrorInfo()
 {
-    return strerror(_error)
+    CouchBaseOperationResult _res;
+    _res.ResultCode = _error;
+    _res.ResultDescription = QString.fromUtf8(lcb_strerror(NULL,_error));
+    _res.isBad = (_error==LCB_SUCCESS);
+    return _res;
 }

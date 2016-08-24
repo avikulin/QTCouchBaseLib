@@ -9,6 +9,12 @@
 
 enum ContentType{rawBytes, structJSON, comressedBinary, Undefined};
 
+struct CouchBaseOperationResult{
+    QString ResultCode;
+    QString ResultDescription;
+    bool isBad = false;
+};
+
 class CouchBaseDocument: public QObject
 {
     Q_OBJECT
@@ -24,6 +30,7 @@ public:
     QJsonObject asJSON();
     QByteArray asByteArray();
     bool isValid();
+    CouchBaseOperationResult GetErrorInfo();
 
 private:
 
