@@ -1,7 +1,7 @@
 #ifndef COUCHBASEDOCUMENT_H
 #define COUCHBASEDOCUMENT_H
 
-#include <QObject>
+#include <QMap>
 #include <QByteArray>
 #include <QString>
 #include <QJsonObject>
@@ -15,21 +15,18 @@ struct CouchBaseOperationResult{
     bool isBad = false;
 };
 
-class CouchBaseDocument: public QObject
-{
-    Q_OBJECT
-
+class CouchBaseDocument{
 public:
-    CouchBaseDocument(lcb_error_t error, const lcb_get_resp_t *resp, QObject *parent = 0);
-    CouchBaseDocument(QString key, QString data, ContentType type, QObject *parent = 0);
+    CouchBaseDocument(lcb_error_t error, const lcb_get_resp_t *resp);
+    CouchBaseDocument(QString key, QString data, ContentType type);
 
-    CouchBaseDocument(CouchBaseDocument& other);
-    CouchBaseDocument(CouchBaseDocument&& other);
+//    CouchBaseDocument(CouchBaseDocument& other);
+//    CouchBaseDocument(CouchBaseDocument&& temp);
     CouchBaseDocument& operator =(CouchBaseDocument& other);
-    CouchBaseDocument& operator =(CouchBaseDocument&& other);
+//    CouchBaseDocument& operator =(CouchBaseDocument&& other);
 
-    bool operator ==(CouchBaseDocument& firstOperand, CouchBaseDocument& secondOperand);
-    bool operator !=(CouchBaseDocument& firstOperand, CouchBaseDocument& secondOperand);
+    bool operator ==(const CouchBaseDocument& other);
+    bool operator !=(CouchBaseDocument& other);
 
 
     QString GetKey ();
@@ -40,17 +37,18 @@ public:
     QByteArray asByteArray();
     bool isValid();
     CouchBaseOperationResult GetErrorInfo();
+    qint32 qHash();
 
 private:
-
+    CouchBaseDocument();
     QByteArray _key;
     QByteArray _data;
     lcb_cas_t _cas;
-    lcb_error_t _error;
+    lcb_error_t _error = LCB_SUCCESS;
     ContentType _type = ContentType::Undefined;
     bool _validationStatus = false;
 };
 
-typedef QHash<QString,CouchBaseDocument> CouchBaseRecordSet;
+typedef QMap<QString,CouchBaseDocument> CouchBaseRecordSet;
 
 #endif // COUCHBASEDOCUMENT_H

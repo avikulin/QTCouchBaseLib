@@ -13,7 +13,7 @@ private:
 
 public:
 
-    static bool Create(QString instanceName, QString userName = QString::QString("Administrator"), QString password = QString::QString(""), QString dataBucket = QString::QString(""));
+    static bool Create(QString instanceName, QString userName, QString password, QString dataBucket);
     static lcb_t GetDataSource();
 };
 

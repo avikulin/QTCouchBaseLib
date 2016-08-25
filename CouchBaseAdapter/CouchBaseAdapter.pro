@@ -12,15 +12,15 @@ TEMPLATE = lib
 DEFINES += COUCHBASEADAPTER_LIBRARY
 
 SOURCES += couchbaseadapter.cpp \
-    couchbasedatacource.cpp \
     couchbasedocument.cpp \
-    couchbaseclientcookie.cpp
+    couchbaseclientcookie.cpp \
+    couchbasedatasource.cpp
 
 HEADERS += couchbaseadapter.h\
         couchbaseadapter_global.h \
-    couchbasedatacource.h \
     couchbasedocument.h \
-    couchbaseclientcookie.h
+    couchbaseclientcookie.h \
+    couchbasedatasource.h
 
 unix {
     target.path = /usr/lib

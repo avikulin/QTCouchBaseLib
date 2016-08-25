@@ -1,16 +1,13 @@
 #include "couchbaseclientcookie.h"
 #include <couchbasedocument.h>
 
-CouchBaseClientCookie::CouchBaseClientCookie(QObject *parent) : QObject(parent)
+CouchBaseRecordSet* CouchBaseClientCookie::getFromPtr(const void *cookie)
 {
-    Q_OBJECT
+    return const_cast<CouchBaseRecordSet*>(reinterpret_cast<const CouchBaseRecordSet*>(cookie));
+}
 
-    public:
-        CouchBaseClientCookie(const void* cookie);
-        bool GetResult();
-        CouchBaseRecordSet GetData();
-    private:
-        CouchBaseClientCookie();
-        CouchBaseRecordSet _docs;
-        bool operationResult = false;
+CouchBaseClientCookie::CouchBaseClientCookie(const CouchBaseRecordSet documentSet, const bool operationResult)
+{
+    _operationResult = operationResult;
+    _docs = documentSet;
 }

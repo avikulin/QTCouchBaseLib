@@ -12,11 +12,12 @@ bool CouchBaseAdapter::Create(QString instanceName, QString userName, QString pa
     options.v.v3.passwd = password.toStdString().c_str();;
     options.v.v3.username = userName.toStdString().c_str();;
 
-    lcb_error_t err = lcb_create(&instance, &options);
-    if (err != LCB_SUCCESS) {
-       qDebug()<<"Failed to create instance: %s\n"<<lcb_strerror(NULL, err);
-       return false;
-    } else return true;
+//    lcb_error_t err = lcb_create(&instance, &options);
+//    if (err != LCB_SUCCESS) {
+//       qDebug()<<"Failed to create instance: %s\n"<<lcb_strerror(NULL, err);
+//       return false;
+//    } else
+       return true;
 }
 
 lcb_t CouchBaseAdapter::GetDataSource()

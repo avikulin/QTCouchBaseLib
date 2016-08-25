@@ -1,6 +1,4 @@
-#include "couchbasedatacource.h"
-
-CouchBaseDataSource::_data
+#include "couchbasedatasource.h"
 
 CouchBaseDataSource::CouchBaseDataSource()
 {
