@@ -4,4 +4,5 @@ SUBDIRS += \
     DataLayer \
     CouchBaseAdapter \
     MainApp \
-    CouchBaseTester
+    CouchBaseTester \
+    CouchBaseUtils

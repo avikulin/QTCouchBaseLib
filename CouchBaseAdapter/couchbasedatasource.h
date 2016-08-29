@@ -1,9 +1,10 @@
 #ifndef COUCHBASEDATACOURCE_H
 #define COUCHBASEDATACOURCE_H
 
-#include "libcouchbase/couchbase.h"
-#include <couchbasedocument.h>
 #include <QString>
+#include <libcouchbase/couchbase.h>
+#include <couchbasedocument.h>
+#include <couchbaseexception.h>
 
 struct CouchBaseConnectOptions{
     lcb_U32 operation_timeout = 0;
@@ -27,7 +28,7 @@ struct CouchBaseConnectOptions{
 class CouchBaseDataSource
 {
 public:
-    bool Create(QString instance, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions options);
+    bool Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions options);
     CouchBaseRecordSet GetRecords(QStringList keys);
     CouchBaseDocument GetRecord(QString key);
     bool InsertOrUpdateRecord(CouchBaseDocument& doc);
@@ -40,6 +41,7 @@ private:
     CouchBaseDataSource(const CouchBaseDataSource& other);
     CouchBaseDataSource& operator = (const CouchBaseDataSource& other);
 
+    QString GetErrorString(lcb_error_t err);
     lcb_t _couchBaseInstance = nullptr;
     bool isConnected = false;
 
@@ -49,25 +51,22 @@ private:
     void fnDestroyCallBack (const void *cookie);
 
 //----Standard key-value finctions---
-//    lcb_error_t lcb_get3(lcb_t 	instance, const void *cookie,const lcb_CMDGET *cmd);
-//    lcb_error_t lcb_store3(lcb_t 	instance, const void *cookie,const lcb_CMDSTORE *cmd);
-//    lcb_error_t lcb_remove3(lcb_t 	instance, const void *cookie,const lcb_CMDREMOVE *cmd);
-//    lcb_error_t lcb_touch3(lcb_t 	instance, const void *cookie,const lcb_CMDTOUCH *cmd);
-//    lcb_error_t lcb_unlock3(lcb_t 	instance, const void *cookie,const lcb_CMDUNLOCK *cmd);
-//    lcb_error_t lcb_counter3(lcb_t 	instance, const void *cookie,const lcb_CMDCOUNTER *cmd);
-//    lcb_error_t lcb_connect(lcb_t 	instance);
-//    lcb_error_t lcb_get_bootstrap_status(lcb_t 	instance);
-//    lcb_error_t lcb_get(lcb_t 	instance, const void *command_cookie, lcb_SIZE 	num,const lcb_get_cmd_t *const *commands);
-//    lcb_error_t lcb_cntl(lcb_t 	instance, int mode, int cmd, void *arg);
-
-
+    lcb_error_t lcb_get3(lcb_t 	instance, const void *cookie,const lcb_CMDGET *cmd);
+    lcb_error_t lcb_store3(lcb_t 	instance, const void *cookie,const lcb_CMDSTORE *cmd);
+    lcb_error_t lcb_remove3(lcb_t 	instance, const void *cookie,const lcb_CMDREMOVE *cmd);
+    lcb_error_t lcb_touch3(lcb_t 	instance, const void *cookie,const lcb_CMDTOUCH *cmd);
+    lcb_error_t lcb_unlock3(lcb_t 	instance, const void *cookie,const lcb_CMDUNLOCK *cmd);
+    lcb_error_t lcb_counter3(lcb_t 	instance, const void *cookie,const lcb_CMDCOUNTER *cmd);
+    lcb_error_t lcb_connect(lcb_t 	instance);
+    lcb_error_t lcb_get_bootstrap_status(lcb_t 	instance);
+    lcb_error_t lcb_get(lcb_t 	instance, const void *command_cookie, lcb_SIZE 	num,const lcb_get_cmd_t *const *commands);
+    lcb_error_t lcb_cntl(lcb_t 	instance, int mode, int cmd, void *arg);
 
     void fnGetCallBack    (lcb_t instance, const void *cookie, lcb_error_t error, const lcb_get_resp_t *resp);
     void fnUnlockCallBack (lcb_t instance, const void *cookie, lcb_error_t error, const lcb_unlock_resp_t *resp);
     void fnRemoveCallBack (lcb_t instance, const void *cookie, lcb_error_t error, const lcb_remove_resp_t *resp);
     void fnTouchCallBack  (lcb_t instance, const void *cookie, lcb_error_t error, const lcb_touch_resp_t *resp);
     void fnStoreCallBack  (lcb_t instance, const void *cookie, lcb_storage_t operation, lcb_error_t error, const lcb_store_resp_t *resp);
-
 };
 
 #endif // COUCHBASEDATACOURCE_H

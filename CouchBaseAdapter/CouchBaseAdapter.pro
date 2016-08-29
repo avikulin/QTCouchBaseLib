@@ -14,7 +14,8 @@ DEFINES += COUCHBASEADAPTER_LIBRARY
 SOURCES += couchbaseadapter.cpp \
     couchbasedocument.cpp \
     couchbaseclientcookie.cpp \
-    couchbasedatasource.cpp
+    couchbasedatasource.cpp \
+    couchbaseexception.cpp
 
 HEADERS += couchbaseadapter.h\
         couchbaseadapter_global.h \
@@ -27,8 +28,16 @@ unix {
     INSTALLS += target
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../LIBS/libcouchbase-2.6.1_amd64_vc11/lib/ -llibcouchbase
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../LIBS/libcouchbase-2.6.1_amd64_vc11/lib/ -llibcouchbase_d
 
-INCLUDEPATH += $$PWD/../LIBS/libcouchbase-2.6.1_amd64_vc11/include
-DEPENDPATH += $$PWD/../LIBS/libcouchbase-2.6.1_amd64_vc11/include
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../LIBS/x64/Win/lib/ -llibcouchbase
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../LIBS/x64/Win/lib/ -llibcouchbase_d
+
+INCLUDEPATH += $$PWD/../LIBS/x64/Win/Include
+DEPENDPATH += $$PWD/../LIBS/x64/Win/Include
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CouchBaseUtils/release/ -lCouchBaseUtils
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CouchBaseUtils/debug/ -lCouchBaseUtils
+else:unix: LIBS += -L$$OUT_PWD/../CouchBaseUtils/ -lCouchBaseUtils
+
+INCLUDEPATH += $$PWD/../CouchBaseUtils
+DEPENDPATH += $$PWD/../CouchBaseUtils

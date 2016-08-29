@@ -97,8 +97,10 @@ bool CouchBaseDocument::isValid()
 CouchBaseOperationResult CouchBaseDocument::GetErrorInfo()
 {
     CouchBaseOperationResult _res;
+    lcb_t instance = NULL;
+    const char* errStr = lcb_strerror(instance,_error);
     _res.ResultCode = _error;
-    _res.ResultDescription = QString::fromUtf8(lcb_strerror(NULL,_error));
+    _res.ResultDescription = QString::fromUtf8(errStr);
     _res.isBad = (_error==LCB_SUCCESS);
     return _res;
 }
