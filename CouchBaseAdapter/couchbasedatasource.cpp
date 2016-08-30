@@ -21,19 +21,23 @@ bool CouchBaseDataSource::Create(QStringList cpouchBaseInstances, QString userNa
     err = lcb_create(&_couchBaseInstance, &connectionParams);
 
     if (err!=LCB_SUCCESS){
-        throw CouchBaseException(GetErrorString(err));
+        throw CouchBaseException(err);
     }
-    err = lcb_get_bootstrap_status(_couchBaseInstance);
 
-    if (err!=LCB_SUCCESS){
-        throw CouchBaseException(GetErrorString(err));
-    }
-    // lcb_error_t lcb_cntl(lcb_t 	instance, int mode, int cmd, void *arg);
+//    err = lcb_connect(_couchBaseInstance);
+//    if (err != LCB_SUCCESS) {
+//        throw CouchBaseException(err);
+//    }
+
+    lcb_wait(_couchBaseInstance);
+
+//    err = lcb_get_bootstrap_status(_couchBaseInstance);
+
+//    if (err!=LCB_SUCCESS){
+//        throw CouchBaseException(err);
+//    }
+
+     //lcb_error_t lcb_cntl(_couchBaseInstance, int mode, int cmd, void *arg);
 
     return false;
-}
-
-QString GetErrorString(lcb_error_t err)
-{
-    return QString("[%1] %2").arg(err).arg(QString::fromLatin1(lcb_strerror(NULL,err)));
 }

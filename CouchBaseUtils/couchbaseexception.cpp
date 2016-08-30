@@ -1,22 +1,13 @@
 #include "couchbaseexception.h"
 
-CouchBaseException::CouchBaseException(QString errDescription)
-{
-    _errString = errDescription;
-}
 
-void CouchBaseException::raise() const
-{
-    throw *this;
-}
 
-QException *CouchBaseException::clone() const
+CouchBaseException::CouchBaseException(lcb_error_t ErrCode)
 {
-    return new CouchBaseException(*this);
+   _err = ErrCode;
 }
-
 
 const char *CouchBaseException::what() const
 {
-    return _errString.toStdString().c_str();
+    return lcb_strerror(NULL,_err);
 }
