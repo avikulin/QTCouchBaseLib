@@ -5,6 +5,7 @@
 #include "libcouchbase/couchbase.h"
 #include <QString>
 #include <QDebug>
+//#include <stdio.h>
 
 class COUCHBASEADAPTERSHARED_EXPORT CouchBaseAdapter
 {

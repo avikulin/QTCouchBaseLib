@@ -11,12 +11,10 @@ TEMPLATE = lib
 
 DEFINES += COUCHBASEUTILS_LIBRARY
 
-SOURCES += couchbaseutils.cpp \
-    couchbaseexception.cpp
+SOURCES += couchbaseutils.cpp
 
 HEADERS += couchbaseutils.h\
-        couchbaseutils_global.h \
-    couchbaseexception.h
+        couchbaseutils_global.h
 
 unix {
     target.path = /usr/lib

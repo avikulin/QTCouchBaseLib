@@ -6,14 +6,23 @@
 #include <QString>
 #include <libcouchbase/couchbase.h>
 
-class COUCHBASEUTILSSHARED_EXPORT CouchBaseException : public QException
+struct ErrInfo{
+    lcb_error_t ErrCode;
+    QString ErrMessage;
+    QString ErrComment;
+};
+
+class CouchBaseException : public QException
 {
 public:
-    CouchBaseException(lcb_error_t ErrCode);
+    CouchBaseException(lcb_error_t ErrCode, const QString Comment);
     void raise() const { throw *this; }
     CouchBaseException *clone() const { return new CouchBaseException(*this); }
     const char *what() const;
+    ErrInfo GetErrInfo() const;
+    QString GetErrMessage() const;
 private:
-    lcb_error_t _err;
+    lcb_error_t _errCode;
+    QString _errComment;
 };
 #endif // COUCHBASEEXCEPTION_H

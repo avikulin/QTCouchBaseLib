@@ -21,23 +21,23 @@ bool CouchBaseDataSource::Create(QStringList cpouchBaseInstances, QString userNa
     err = lcb_create(&_couchBaseInstance, &connectionParams);
 
     if (err!=LCB_SUCCESS){
-        throw CouchBaseException(err);
+        throw CouchBaseException(err,"Can't ctreate the CouchBase instance");
     }
 
-//    err = lcb_connect(_couchBaseInstance);
-//    if (err != LCB_SUCCESS) {
-//        throw CouchBaseException(err);
-//    }
+    err = lcb_connect(_couchBaseInstance);
+    if (err != LCB_SUCCESS) {
+        throw CouchBaseException(err, "Can't connect to the CouchBase instance");
+    }
 
     lcb_wait(_couchBaseInstance);
 
-//    err = lcb_get_bootstrap_status(_couchBaseInstance);
+    err = lcb_get_bootstrap_status(_couchBaseInstance);
 
-//    if (err!=LCB_SUCCESS){
-//        throw CouchBaseException(err);
-//    }
+    if (err!=LCB_SUCCESS){
+        throw CouchBaseException(err, "Can't bootstrap the CouchBase instance");
+    }
 
-     //lcb_error_t lcb_cntl(_couchBaseInstance, int mode, int cmd, void *arg);
+     err = lcb_cntl(_couchBaseInstance, LCB_CNTL_SET, LCB_CNTL_DETAILED_ERRCODES, &_couchBaseConfigNumber);
 
     return false;
 }
