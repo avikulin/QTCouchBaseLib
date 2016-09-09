@@ -1,21 +1,22 @@
 #ifndef COUCHBASEDOCUMENT_H
 #define COUCHBASEDOCUMENT_H
 
+#include <couchbaseadapter_global.h>
 #include <QMap>
 #include <QByteArray>
 #include <QString>
 #include <QJsonObject>
-#include "libcouchbase/couchbase.h"
+#include "../LIBS/x64/Win/Include/libcouchbase/couchbase.h"
 
-enum ContentType{rawBytes, structJSON, comressedBinary, Undefined};
+enum COUCHBASEADAPTERSHARED_EXPORT ContentType{rawBytes, structJSON, comressedBinary, Undefined};
 
-struct CouchBaseOperationResult{
+struct COUCHBASEADAPTERSHARED_EXPORT CouchBaseOperationResult{
     QString ResultCode;
     QString ResultDescription;
     bool isBad = false;
 };
 
-class CouchBaseDocument{
+class COUCHBASEADAPTERSHARED_EXPORT CouchBaseDocument{
 public:
     CouchBaseDocument(lcb_error_t error, const lcb_get_resp_t *resp);
     CouchBaseDocument(QString key, QString data, ContentType type);

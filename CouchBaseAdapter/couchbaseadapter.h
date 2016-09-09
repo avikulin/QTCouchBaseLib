@@ -2,20 +2,21 @@
 #define COUCHBASEADAPTER_H
 
 #include "couchbaseadapter_global.h"
-#include "libcouchbase/couchbase.h"
 #include <QString>
-#include <QDebug>
-//#include <stdio.h>
+#include <couchbasedatasource.h>
 
 class COUCHBASEADAPTERSHARED_EXPORT CouchBaseAdapter
 {
 private:
-    static lcb_t instance;
+
+    CouchBaseAdapter();
+    CouchBaseAdapter(CouchBaseAdapter &other);
+    CouchBaseAdapter& operator= (CouchBaseAdapter &other);
+    ~CouchBaseAdapter();
 
 public:
 
-    static bool Create(QString instanceName, QString userName, QString password, QString dataBucket);
-    static lcb_t GetDataSource();
+    static CouchBaseDataSource& GetDataSource(QStringList instanceName, QString userName, QString password, QString dataBucket);
 };
 
 #endif // COUCHBASEADAPTER_H

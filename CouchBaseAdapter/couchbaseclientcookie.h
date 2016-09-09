@@ -1,5 +1,7 @@
 #ifndef COUCHBASECLIENTCOOKIE_H
 #define COUCHBASECLIENTCOOKIE_H
+
+#include <couchbaseadapter_global.h>
 #include <QtCore>
 #include <QMap>
 #include <couchbasedocument.h>

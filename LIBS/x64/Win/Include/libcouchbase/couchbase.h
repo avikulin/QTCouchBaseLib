@@ -46,15 +46,15 @@ typedef struct lcb_http_request_st *lcb_http_request_t;
 #include <time.h>
 #include <stdarg.h>
 #include <stdio.h>
-#include <libcouchbase/sysdefs.h>
-#include <libcouchbase/assert.h>
-#include <libcouchbase/visibility.h>
-#include <libcouchbase/error.h>
-#include <libcouchbase/iops.h>
-#include <libcouchbase/http.h>
-#include <libcouchbase/configuration.h>
-#include <libcouchbase/kvbuf.h>
-#include <libcouchbase/_cxxwrap.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/sysdefs.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/assert.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/visibility.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/error.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/iops.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/http.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/configuration.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/kvbuf.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/_cxxwrap.h>
 
 #ifdef __cplusplus
 extern "C"{
@@ -3681,8 +3681,8 @@ void lcb_histogram_print(lcb_HISTOGRAM* hg, FILE* stream);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-#include <libcouchbase/subdoc.h>
-#include <libcouchbase/cntl.h>
-#include <libcouchbase/deprecated.h>
-#include <libcouchbase/api-legacy.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/subdoc.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/cntl.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/deprecated.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/api-legacy.h>
 #endif /* LIBCOUCHBASE_COUCHBASE_H */

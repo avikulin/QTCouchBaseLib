@@ -2,12 +2,13 @@
 
 CouchBaseDataSource::CouchBaseDataSource()
 {
-
+    _isConnected = false;
 }
 
-bool CouchBaseDataSource::Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions options)
+void CouchBaseDataSource::Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions &options)
 {
     lcb_error_t err;
+    _isConnected = false;
 
     QString connStr = "couchbase://"+QString::fromStdString(cpouchBaseInstances.join(",").toStdString());
 
@@ -38,6 +39,14 @@ bool CouchBaseDataSource::Create(QStringList cpouchBaseInstances, QString userNa
     }
 
      err = lcb_cntl(_couchBaseInstance, LCB_CNTL_SET, LCB_CNTL_DETAILED_ERRCODES, &_couchBaseConfigNumber);
+     if (err!=LCB_SUCCESS){
+         throw CouchBaseException(err, "Can't set extended error info");
+     }
 
-    return false;
+     _isConnected = true;
+}
+
+bool CouchBaseDataSource::CheckConnectionStatus()
+{
+    return _isConnected;
 }

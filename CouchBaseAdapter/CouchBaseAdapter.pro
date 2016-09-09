@@ -30,15 +30,9 @@ unix {
     INSTALLS += target
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../LIBS/x64/Win/lib/ -llibcouchbase
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../LIBS/x64/Win/lib/ -llibcouchbase_d
+win32:LIBS += -L$$PWD/../LIBS/x64/Win/lib/ -llibcouchbase
+else:win32:LIBS += -L$$PWD/../LIBS/x64/Win/lib/ -llibcouchbase_d
 
 INCLUDEPATH += $$PWD/../LIBS/x64/Win/Include
 DEPENDPATH += $$PWD/../LIBS/x64/Win/Include
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CouchBaseUtils/release/ -lCouchBaseUtils
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CouchBaseUtils/debug/ -lCouchBaseUtils
-else:unix: LIBS += -L$$OUT_PWD/../CouchBaseUtils/ -lCouchBaseUtils
-
-INCLUDEPATH += $$PWD/../CouchBaseUtils
-DEPENDPATH += $$PWD/../CouchBaseUtils

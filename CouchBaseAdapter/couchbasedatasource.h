@@ -1,12 +1,13 @@
 #ifndef COUCHBASEDATACOURCE_H
 #define COUCHBASEDATACOURCE_H
 
+#include <couchbaseadapter_global.h>
 #include <QString>
-#include <libcouchbase/couchbase.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/couchbase.h>
 #include <couchbasedocument.h>
 #include <couchbaseexception.h>
 
-struct CouchBaseConnectOptions{
+struct COUCHBASEADAPTERSHARED_EXPORT CouchBaseConnectOptions {
     lcb_U32 operation_timeout = 0;
     lcb_U32 view_timeout = 0;
     lcb_U32 durability_timeout = 0;
@@ -25,26 +26,25 @@ struct CouchBaseConnectOptions{
     bool vbguess_persist = false;
 };
 
-class CouchBaseDataSource
+class COUCHBASEADAPTERSHARED_EXPORT CouchBaseDataSource
 {
 public:
-    bool Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions options);
+    CouchBaseDataSource();
+    void Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions& options);
     CouchBaseRecordSet GetRecords(QStringList keys);
     CouchBaseDocument GetRecord(QString key);
     bool InsertOrUpdateRecord(CouchBaseDocument& doc);
     bool DeleteRecord(CouchBaseDocument& doc);
     bool CheckConnectionStatus();
-    ~CouchBaseDataSource();
 
 private:
-    CouchBaseDataSource();
     CouchBaseDataSource(const CouchBaseDataSource& other);
     CouchBaseDataSource& operator = (const CouchBaseDataSource& other);
 
     QString GetErrorString(lcb_error_t err);
     lcb_t _couchBaseInstance = nullptr;
-    int _couchBaseConfigNumber;
-    bool isConnected = false;
+    int _couchBaseConfigNumber = 0;
+    bool _isConnected = false;
 
     //---Internal CallBack functions
 

@@ -1,18 +1,18 @@
 #ifndef COUCHBASEEXCEPTION_H
 #define COUCHBASEEXCEPTION_H
 
-#include "couchbaseutils_global.h"
+#include "couchbaseadapter_global.h"
 #include <QException>
 #include <QString>
-#include <libcouchbase/couchbase.h>
+#include <../LIBS/x64/Win/Include/libcouchbase/couchbase.h>
 
-struct ErrInfo{
+struct COUCHBASEADAPTERSHARED_EXPORT ErrInfo{
     lcb_error_t ErrCode;
     QString ErrMessage;
     QString ErrComment;
 };
 
-class CouchBaseException : public QException
+class COUCHBASEADAPTERSHARED_EXPORT CouchBaseException : public QException
 {
 public:
     CouchBaseException(lcb_error_t ErrCode, const QString Comment);
