@@ -8,6 +8,7 @@ QT       -= gui
 
 TARGET = CouchBaseUtils
 TEMPLATE = lib
+DESTDIR = $$OUT_PWD
 
 DEFINES += COUCHBASEUTILS_LIBRARY
 
