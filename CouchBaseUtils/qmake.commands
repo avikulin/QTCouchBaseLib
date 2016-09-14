@@ -1,0 +1,45 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2016-07-24T17:40:48
+#
+#-------------------------------------------------
+
+QT       += core
+CONFIG(debug, debug|release):{
+                                CONFIG = debug
+                                warning("Debug mode. Output folder: "$$OUT_PWD)
+                             }
+CONFIG(release, debug|release):{
+                                CONFIG = release
+                                warning("Debug mode. Output folder: "$$OUT_PWD)
+                             }
+
+DESTDIR = $$OUT_PWD\\My_Bin
+OBJECTS_DIR = $$OUT_PWD\\My_Temp
+MOC_DIR = $$OUT_PWD\\My_MOC
+RCC_DIR = $$OUT_PWD\\My_Res
+LIBS_DIR.files += $$PWD/Libs/win32/test_doc.txt
+LIBS_DIR.path = $$OUT_PWD/Libs/win32
+
+TARGET = Test
+
+TEMPLATE = app
+
+SOURCES += \
+    main.cpp
+
+INSTALLS += LIBS_DIR
+
+warning("Current DIR - "$$PWD)
+warning("Build DIR - "$$OUT_PWD)
+warning("Dest DIR - "$$DESTDIR)
+warning("LIBS DIR - "$$LIBS_DIR.files)
+warning("LIBS DIR path - "$$LIBS_DIR.path)
+warning("----")
+warning ($$QMAKE_TARGET.arch)
+
+win32-msvc2013:{
+QMAKE_TARGET.arch:
+    warning ("win32-msvc2013 build")
+}
+!unix:warning ("Not *nix build")
