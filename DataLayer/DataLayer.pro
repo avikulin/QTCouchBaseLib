@@ -8,7 +8,7 @@ QT       -= gui
 
 TARGET = DataLayer
 TEMPLATE = lib
-
+DESTDIR = $$OUT_PWD
 DEFINES += DATALAYER_LIBRARY
 
 SOURCES += datalayer.cpp

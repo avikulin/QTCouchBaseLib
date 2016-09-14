@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MainApp
 TEMPLATE = app
-
+DESTDIR = $$OUT_PWD
 
 SOURCES += main.cpp\
         mainwindow.cpp

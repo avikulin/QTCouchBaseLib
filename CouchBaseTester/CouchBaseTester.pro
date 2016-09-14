@@ -2,6 +2,7 @@ QT += core
 QT -= gui
 
 CONFIG += c++11
+DESTDIR = $$OUT_PWD
 
 TARGET = CouchBaseTester
 CONFIG += console
@@ -11,16 +12,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 
-message("....")
 
-BUILD_FOLDER = "Windows - "$$OUT_PWD"!!!"
-message($$BUILD_FOLDER)
 
-CURRENT_DIR = $$join("Current dir - ",$$PWD)
-message ($$CURRENT_DIR)
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CouchBaseAdapter/release/ -lCouchBaseAdapter
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CouchBaseAdapter/debug/ -lCouchBaseAdapter
+else:unix:!macx: LIBS += -L$$OUT_PWD/../CouchBaseAdapter/ -lCouchBaseAdapter
 
-BUILD_DIR = $$join("Build dir - ",$$OUT_PWD)
-message ($$BUILD_DIR)
-
-PRJ_NAME = $$join("Project name - ",$$TARGET)
-message ($$PRJ_NAME)
+INCLUDEPATH += $$PWD/../CouchBaseAdapter
+DEPENDPATH += $$PWD/../CouchBaseAdapter

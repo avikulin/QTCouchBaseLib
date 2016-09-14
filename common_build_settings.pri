@@ -1,0 +1,29 @@
+PROJECT_ROOT_PATH = $${PWD}/
+
+win32: OS_SUFFIX = win32
+linux-g++: OS_SUFFIX = linux
+
+CONFIG(debug, debug|release) {
+    BUILD_FLAG = debug
+    LIB_SUFFIX = _d
+} else {
+    BUILD_FLAG = release
+}
+
+LIBS_PATH = $${PROJECT_ROOT_PATH}/LIBS/$${OS_SUFFIX}/lib/
+INC_PATH = $${PROJECT_ROOT_PATH}/LIBS/$${OS_SUFFIX}/include/
+IMPORT_PATH = $${PROJECT_ROOT_PATH}/LIBS/$${OS_SUFFIX}/bin
+
+BIN_PATH = $$OUT_PWD/bin//$${OS_SUFFIX}/$${BUILD_FLAG}
+BUILD_TEMP_PATH = $$OUT_PWD/build_temp/$${BUILD_FLAG}/$${TARGET}/
+
+RCC_DIR = $${BUILD_TEMP_PATH}/rcc/
+UI_DIR = $${BUILD_TEMP_PATH}/ui/
+MOC_DIR = $${BUILD_TEMP_PATH}/moc/
+OBJECTS_DIR = $${BUILD_TEMP_PATH}/obj/
+
+LIBS += -L$${LIBS_PATH}/
+INCLUDEPATH += $${INC_PATH}/
+INCLUDEPATH += $${IMPORT_PATH}/
+
+QMAKE_CXXFLAGS += -std=c++11
