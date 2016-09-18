@@ -3,7 +3,7 @@
 
 #include <couchbaseadapter_global.h>
 #include <QString>
-#include <../LIBS/x64/Win/Include/libcouchbase/couchbase.h>
+#include <libcouchbase/couchbase.h>
 #include <couchbasedocument.h>
 #include <couchbaseexception.h>
 

@@ -6,7 +6,7 @@
 #include <QByteArray>
 #include <QString>
 #include <QJsonObject>
-#include "../LIBS/x64/Win/Include/libcouchbase/couchbase.h"
+#include "libcouchbase/couchbase.h"
 
 enum COUCHBASEADAPTERSHARED_EXPORT ContentType{rawBytes, structJSON, comressedBinary, Undefined};
 
