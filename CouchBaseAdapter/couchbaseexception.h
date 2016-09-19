@@ -4,7 +4,7 @@
 #include "couchbaseadapter_global.h"
 #include <QException>
 #include <QString>
-#include <../LIBS/x64/Win/Include/libcouchbase/couchbase.h>
+#include <libcouchbase/couchbase.h>
 
 struct COUCHBASEADAPTERSHARED_EXPORT ErrInfo{
     lcb_error_t ErrCode;
