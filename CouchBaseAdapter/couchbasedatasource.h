@@ -30,7 +30,7 @@ class COUCHBASEADAPTERSHARED_EXPORT CouchBaseDataSource
 {
 public:
     CouchBaseDataSource();
-    void Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions& options);
+    void Create(QString cpouchBaseInstance, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions& options);
     CouchBaseRecordSet GetRecords(QStringList keys);
     CouchBaseDocument GetRecord(QString key);
     bool InsertOrUpdateRecord(CouchBaseDocument& doc);

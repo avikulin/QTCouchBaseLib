@@ -18,8 +18,6 @@ SOURCES += couchbaseutils.cpp
 HEADERS += couchbaseutils.h\
         couchbaseutils_global.h
 
-
-
 DISTFILES += \
     app_settings.pri \
     common_build_settings.pri \

@@ -16,7 +16,7 @@ private:
 
 public:
 
-    static CouchBaseDataSource& GetDataSource(QStringList instanceName, QString userName, QString password, QString dataBucket);
+    static CouchBaseDataSource& GetDataSource(QString instanceName, QString userName, QString password, QString dataBucket);
 };
 
 #endif // COUCHBASEADAPTER_H

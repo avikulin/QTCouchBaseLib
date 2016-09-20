@@ -1,6 +1,6 @@
 #include "couchbaseadapter.h"
 
-CouchBaseDataSource& CouchBaseAdapter::GetDataSource(QStringList instanceName, QString userName, QString password, QString dataBucket)
+CouchBaseDataSource& CouchBaseAdapter::GetDataSource(QString instanceName, QString userName, QString password, QString dataBucket)
 {
     static CouchBaseDataSource _datasource;
 
