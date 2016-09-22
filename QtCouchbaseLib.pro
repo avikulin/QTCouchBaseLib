@@ -14,4 +14,5 @@ SUBDIRS += \
     CouchBaseTester.subdir = CouchBaseTester
  # managing dependencies
     CouchBaseTester.depends = CouchBaseAdapter
+    CouchBaseAdapter.depends = CouchBaseUtils
 

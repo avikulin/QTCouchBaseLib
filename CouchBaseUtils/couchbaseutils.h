@@ -8,7 +8,6 @@ class COUCHBASEUTILSSHARED_EXPORT CouchBaseUtils
 {
 
 public:
-    static char* QStringConverter(QString in_Str);
     CouchBaseUtils();
 };
 

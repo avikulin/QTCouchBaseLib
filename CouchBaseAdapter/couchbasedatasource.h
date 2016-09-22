@@ -6,6 +6,7 @@
 #include <libcouchbase/couchbase.h>
 #include <couchbasedocument.h>
 #include <couchbaseexception.h>
+#include <qstringconverter.h>
 
 struct COUCHBASEADAPTERSHARED_EXPORT CouchBaseConnectOptions {
     lcb_U32 operation_timeout = 0;

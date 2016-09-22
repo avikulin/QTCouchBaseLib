@@ -31,3 +31,4 @@ include (../CouchBaseUtils/common_build_settings.pri)
 include (../CouchBaseUtils/lib_settings.pri)
 
 LIBS += -llibcouchbase$$LIB_SUFFIX
+LIBS += -lCouchBaseUtils
