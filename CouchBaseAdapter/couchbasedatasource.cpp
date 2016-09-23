@@ -5,37 +5,22 @@ CouchBaseDataSource::CouchBaseDataSource()
     _isConnected = false;
 }
 
-void CouchBaseDataSource::Create(QString couchBaseInstance, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions &options)
+void CouchBaseDataSource::Create(QStringList cpouchBaseInstances, QString userName, QString password, QString dataBucket, CouchBaseConnectOptions &options)
 {
     lcb_error_t err;
     _isConnected = false;
 
-    QString connStr = "couchbase://"+couchBaseInstance+"/"+dataBucket;
-
-
+    QStringConverter connStr(QString("couchbase://%1/%2").arg(cpouchBaseInstances.join(",")).arg(dataBucket));
+    QStringConverter userLogin(userName);
+    QStringConverter userPassword(password);
 
     struct lcb_create_st connectionParams;
     memset(&connectionParams, 0, sizeof(connectionParams));
-//    connectionParams.version = 3;
-//    connectionParams.v.v3.connstr = connStr.toStdString().c_str();
-//    connectionParams.v.v3.username = userName.toStdString().c_str();
-//    connectionParams.v.v3.passwd = password.toStdString().c_str();
 
     connectionParams.version = 3;
-    connectionParams.v.v3.connstr = "couchbase://avikulin/beer-sample";
-    connectionParams.v.v3.username = "beer-sample";
-    connectionParams.v.v3.passwd = "";
-
-//    connectionParams.version = 3;
-//    connectionParams.v.v3.connstr = QStringConverter("couchbase://"+couchBaseInstance+"/"+dataBucket).to_cstr();
-//    connectionParams.v.v3.username = QStringConverter(userName).to_cstr();
-//    connectionParams.v.v3.passwd = QStringConverter(password).to_cstr();
-
-    QStringConverter conv (QString("asdfg12345"));
-    char* v = conv.to_cstr();
-
-
-//    char* v = QStringConverter(QString("asdfg12345")).to_cstr();
+    connectionParams.v.v3.connstr = connStr.to_cstr();
+    connectionParams.v.v3.username = userLogin.to_cstr();
+    connectionParams.v.v3.passwd = userPassword.to_cstr();
 
     err = lcb_create(&_couchBaseInstance, &connectionParams);
 
